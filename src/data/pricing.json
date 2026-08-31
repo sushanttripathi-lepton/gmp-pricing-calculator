@@ -1,0 +1,3181 @@
+{
+  "generatedAt": "2026-08-31",
+  "sources": {
+    "us": "https://developers.google.com/maps/billing-and-pricing/pricing?hl=en",
+    "in": "https://developers.google.com/maps/billing-and-pricing/pricing-india?hl=en"
+  },
+  "skus": [
+    {
+      "id": "maps-dynamic-maps",
+      "name": "Dynamic Maps",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "FAF4-3B2D-51B2",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 7
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      },
+      "in": {
+        "sku": "AA0F-63D7-9D0E",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-embed",
+      "name": "Embed",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "9C10-8313-F21F",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "CFCA-F7C3-159C",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-maps-sdk",
+      "name": "Maps SDK",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "6DE1-4D9C-5B67",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "A319-2357-D01E",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-static-maps",
+      "name": "Static Maps",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "3C2D-B525-2E5F",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 2
+          },
+          {
+            "upTo": 500000,
+            "per1000": 1.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 1.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.6
+          },
+          {
+            "upTo": null,
+            "per1000": 0.15
+          }
+        ]
+      },
+      "in": {
+        "sku": "4D28-62E3-9F71",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.6
+          },
+          {
+            "upTo": null,
+            "per1000": 0.15
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-static-street-view",
+      "name": "Static Street View",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "9BD0-A2EE-44C3",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 7
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      },
+      "in": {
+        "sku": "C08C-647F-C33B",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-street-view-metadata",
+      "name": "Street View Metadata",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "3168-48A9-5C8C",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "44B3-744C-0C2A",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-aerial-view",
+      "name": "Aerial View",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "C9F8-981F-CF51",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 16
+          },
+          {
+            "upTo": 500000,
+            "per1000": 12.8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 4.8
+          },
+          {
+            "upTo": null,
+            "per1000": 1.2
+          }
+        ]
+      },
+      "in": {
+        "sku": "1AD4-6C97-00E8",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 4.8
+          },
+          {
+            "upTo": null,
+            "per1000": 1.2
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-dynamic-street-view",
+      "name": "Dynamic Street View",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "658E-F885-E11A",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 14
+          },
+          {
+            "upTo": 500000,
+            "per1000": 11.2
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 8.4
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": null,
+            "per1000": 1.05
+          }
+        ]
+      },
+      "in": {
+        "sku": "6E5F-B76B-11ED",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": null,
+            "per1000": 1.05
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-elevation",
+      "name": "Elevation",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "B43B-2A59-C153",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "2C90-4807-194C",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "maps-immersive-maps",
+      "name": "Immersive Maps",
+      "group": "Maps",
+      "unit": "map loads",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "4816-83A2-9059",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 7
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      },
+      "in": {
+        "sku": "B383-D5A8-F843",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      }
+    },
+    {
+      "id": "map-tiles-map-tiles-api-2d-map-tiles",
+      "name": "Map Tiles API: 2D Map Tiles",
+      "group": "Map Tiles",
+      "unit": "tile requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "0164-F76D-680A",
+        "freeCap": 100000,
+        "tiers": [
+          {
+            "upTo": 1000000,
+            "per1000": 0.6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.48
+          },
+          {
+            "upTo": 10000000,
+            "per1000": 0.36
+          },
+          {
+            "upTo": 50000000,
+            "per1000": 0.18
+          },
+          {
+            "upTo": null,
+            "per1000": 0.045
+          }
+        ]
+      },
+      "in": {
+        "sku": "DA70-1FF2-6B9D",
+        "freeCap": 700000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.18
+          },
+          {
+            "upTo": null,
+            "per1000": 0.045
+          }
+        ]
+      }
+    },
+    {
+      "id": "map-tiles-map-tiles-api-street-view-tiles",
+      "name": "Map Tiles API: Street View Tiles",
+      "group": "Map Tiles",
+      "unit": "tile requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "2A39-565F-B3B0",
+        "freeCap": 100000,
+        "tiers": [
+          {
+            "upTo": 1000000,
+            "per1000": 2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.6
+          },
+          {
+            "upTo": 10000000,
+            "per1000": 1.2
+          },
+          {
+            "upTo": 50000000,
+            "per1000": 0.6
+          },
+          {
+            "upTo": null,
+            "per1000": 0.2
+          }
+        ]
+      },
+      "in": {
+        "sku": "5B1B-D58C-99E2",
+        "freeCap": 700000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.6
+          },
+          {
+            "upTo": null,
+            "per1000": 0.2
+          }
+        ]
+      }
+    },
+    {
+      "id": "map-tiles-map-tiles-api-photorealistic-3d-tiles",
+      "name": "Map Tiles API: Photorealistic 3D Tiles",
+      "group": "Map Tiles",
+      "unit": "tile requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "C6E1-98B2-DBD0",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 6
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3.3
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      },
+      "in": {
+        "sku": "592E-920B-C911",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3.3
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routes-compute-routes-essentials",
+      "name": "Routes: Compute Routes Essentials",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "9EFF-679A-9B16",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "890F-D2B6-C2EA",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routes-compute-route-matrix-essentials",
+      "name": "Routes: Compute Route Matrix Essentials",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "9392-1087-2045",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "AE55-A4D2-4177",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-roads-nearest-road",
+      "name": "Roads - Nearest Road",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "6108-C697-9EA5",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.76
+          }
+        ]
+      },
+      "in": {
+        "sku": "BFA2-4E15-25C5",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.76
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-roads-route-traveled",
+      "name": "Roads - Route Traveled",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "9806-C277-BCCA",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.76
+          }
+        ]
+      },
+      "in": {
+        "sku": "C090-EC88-30C5",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.76
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-roads-speed-limits",
+      "name": "Roads - Speed Limits",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "BC44-A4CC-322A",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 20
+          },
+          {
+            "upTo": 500000,
+            "per1000": 16
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 12
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 12
+          },
+          {
+            "upTo": null,
+            "per1000": 12
+          }
+        ]
+      },
+      "in": {
+        "sku": "242A-7AE7-0C94",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 12
+          },
+          {
+            "upTo": null,
+            "per1000": 12
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routeoptimization-singlevehiclerouting",
+      "name": "RouteOptimization - SingleVehicleRouting",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "2020-AA6E-7D49",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.8
+          },
+          {
+            "upTo": null,
+            "per1000": 0.7
+          }
+        ]
+      },
+      "in": {
+        "sku": "93D3-73B7-A3FC",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.8
+          },
+          {
+            "upTo": null,
+            "per1000": 0.7
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routes-compute-routes-pro",
+      "name": "Routes: Compute Routes Pro",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "02F7-1B55-DC90",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      },
+      "in": {
+        "sku": "3CC6-0DC6-1C5F",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routes-compute-route-matrix-pro",
+      "name": "Routes: Compute Route Matrix Pro",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "2E25-887A-DAD4",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      },
+      "in": {
+        "sku": "CA04-7918-ACFC",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routeoptimization-fleetrouting",
+      "name": "RouteOptimization - FleetRouting",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "08E0-0D24-6C8E",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 30
+          },
+          {
+            "upTo": 500000,
+            "per1000": 14
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 2.4
+          },
+          {
+            "upTo": null,
+            "per1000": 2.1
+          }
+        ]
+      },
+      "in": {
+        "sku": "783E-5817-1DA7",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 2.4
+          },
+          {
+            "upTo": null,
+            "per1000": 2.1
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routes-compute-routes-enterprise",
+      "name": "Routes: Compute Routes Enterprise",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "6EBD-08E5-319A",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 15
+          },
+          {
+            "upTo": 500000,
+            "per1000": 12
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 9
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 4.5
+          },
+          {
+            "upTo": null,
+            "per1000": 1.14
+          }
+        ]
+      },
+      "in": {
+        "sku": "BFBE-DDB5-317C",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 4.5
+          },
+          {
+            "upTo": null,
+            "per1000": 1.14
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-routes-compute-route-matrix-enterprise",
+      "name": "Routes: Compute Route Matrix Enterprise",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "CEB3-E352-A99B",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 15
+          },
+          {
+            "upTo": 500000,
+            "per1000": 12
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 9
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 4.5
+          },
+          {
+            "upTo": null,
+            "per1000": 1.14
+          }
+        ]
+      },
+      "in": {
+        "sku": "046F-7FE8-E2EF",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 4.5
+          },
+          {
+            "upTo": null,
+            "per1000": 1.14
+          }
+        ]
+      }
+    },
+    {
+      "id": "navigation-sdk-navigation-request",
+      "name": "Navigation Request",
+      "group": "Navigation SDK",
+      "unit": "navigation requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "AF6D-A7B0-31CF",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 25
+          },
+          {
+            "upTo": 500000,
+            "per1000": 20
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 15
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 8
+          },
+          {
+            "upTo": null,
+            "per1000": 2
+          }
+        ]
+      },
+      "in": {
+        "sku": "9C23-024B-56A1",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 8
+          },
+          {
+            "upTo": null,
+            "per1000": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-autocomplete-requests",
+      "name": "Autocomplete Requests",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "4EF4-B17C-B31A",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 2.83
+          },
+          {
+            "upTo": 500000,
+            "per1000": 2.27
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 1.7
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.85
+          },
+          {
+            "upTo": null,
+            "per1000": 0.21
+          }
+        ]
+      },
+      "in": {
+        "sku": "F155-0371-DCAE",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.85
+          },
+          {
+            "upTo": null,
+            "per1000": 0.21
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-autocomplete-session-usage",
+      "name": "Autocomplete Session Usage",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "EEA3-417B-DBA1",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "4764-9FA0-0FC0",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-geocoding",
+      "name": "Geocoding",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "BAC8-4E68-E261",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "AB12-DA89-B523",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-geolocation",
+      "name": "Geolocation",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "51AF-D64F-9ABD",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "8D4A-1891-61DA",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-maps-grounding-lite",
+      "name": "Maps Grounding Lite",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "8CD0-1602-5324",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 7
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5.95
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.9
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3.85
+          },
+          {
+            "upTo": null,
+            "per1000": 2.8
+          }
+        ]
+      },
+      "in": {
+        "sku": "E1E0-C208-1C60",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3.85
+          },
+          {
+            "upTo": null,
+            "per1000": 2.8
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-place-details-essentials-ids-only",
+      "name": "Places API Place Details Essentials (IDs Only)",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "5C36-E272-E88F",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "FAA1-1118-93BE",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-place-details-essentials",
+      "name": "Places API Place Details Essentials",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "6E05-E1C3-8D85",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "8036-9499-4AF9",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-text-search-essentials-ids-only",
+      "name": "Places API Text Search Essentials (IDs Only)",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "635D-A9DD-C520",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "9C44-5A2D-4E06",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-ui-kit-query",
+      "name": "Places UI Kit Query",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "0678-4F72-DA7C",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 1
+          },
+          {
+            "upTo": 500000,
+            "per1000": 0.8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 0.6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.08
+          }
+        ]
+      },
+      "in": {
+        "sku": "B10D-0B66-6EAD",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.08
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-ui-kit-autocomplete-per-session",
+      "name": "Places UI Kit - Autocomplete Per Session",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "924B-2797-26F1",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.8
+          }
+        ]
+      },
+      "in": {
+        "sku": "1EC3-B6E6-F9B9",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.8
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-time-zone",
+      "name": "Time Zone",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "91DF-9B59-4BBD",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "0301-2887-FE47",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-address-validation-pro",
+      "name": "Address Validation Pro",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "A2E0-53FF-0BE3",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 17
+          },
+          {
+            "upTo": 500000,
+            "per1000": 13.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 10.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      },
+      "in": {
+        "sku": "4EB5-381D-BD8E",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-nearby-search-pro",
+      "name": "Places API Nearby Search Pro",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "99F9-A108-83A6",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 32
+          },
+          {
+            "upTo": 500000,
+            "per1000": 25.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 19.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      },
+      "in": {
+        "sku": "33DE-5C83-8354",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-place-details-pro",
+      "name": "Places API Place Details Pro",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "4ED6-464A-2AFC",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 17
+          },
+          {
+            "upTo": 500000,
+            "per1000": 13.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 10.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      },
+      "in": {
+        "sku": "1F70-206B-61DF",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-text-search-pro",
+      "name": "Places API Text Search Pro",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "4FDA-34B1-A910",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 32
+          },
+          {
+            "upTo": 500000,
+            "per1000": 25.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 19.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      },
+      "in": {
+        "sku": "2DB9-E41E-AC2A",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-aggregate-api",
+      "name": "Places Aggregate API",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "546C-66B2-E5A6",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 6
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      },
+      "in": {
+        "sku": "CA83-2F48-1131",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-ui-kit-pro",
+      "name": "Places UI Kit Pro",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "42AB-1FB3-B56A",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 3
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      },
+      "in": {
+        "sku": "EA84-C46A-0634",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-address-validation-enterprise",
+      "name": "Address Validation Enterprise",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "10F3-119A-C6EC",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 25
+          },
+          {
+            "upTo": 500000,
+            "per1000": 20
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 15
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 7.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.28
+          }
+        ]
+      },
+      "in": {
+        "sku": "D73D-9896-24CF",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 7.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-nearby-search-enterprise",
+      "name": "Places API Nearby Search Enterprise",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "772E-9975-BE34",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 35
+          },
+          {
+            "upTo": 500000,
+            "per1000": 28
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 21
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 10.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.63
+          }
+        ]
+      },
+      "in": {
+        "sku": "B049-A814-B2A8",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 10.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.63
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-nearby-search-enterprise-atmosphere",
+      "name": "Places API Nearby Search Enterprise + Atmosphere",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "F20E-7034-0EF7",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 40
+          },
+          {
+            "upTo": 500000,
+            "per1000": 32
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 24
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 12
+          },
+          {
+            "upTo": null,
+            "per1000": 3.4
+          }
+        ]
+      },
+      "in": {
+        "sku": "1DC0-87A6-65E7",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 12
+          },
+          {
+            "upTo": null,
+            "per1000": 3.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-place-details-enterprise",
+      "name": "Places API Place Details Enterprise",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "2D9A-3DE0-3766",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 20
+          },
+          {
+            "upTo": 500000,
+            "per1000": 16
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 12
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 6
+          },
+          {
+            "upTo": null,
+            "per1000": 1.51
+          }
+        ]
+      },
+      "in": {
+        "sku": "448A-2967-E6BF",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 6
+          },
+          {
+            "upTo": null,
+            "per1000": 1.51
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-place-details-enterprise-atmosphere",
+      "name": "Places API Place Details Enterprise + Atmosphere",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "EB23-5ECC-F753",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 25
+          },
+          {
+            "upTo": 500000,
+            "per1000": 20
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 15
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 7.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.28
+          }
+        ]
+      },
+      "in": {
+        "sku": "586E-FEBE-4FD2",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 7.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-place-details-photos",
+      "name": "Places API Place Details Photos",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "DCD1-FE97-8C71",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 7
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5.6
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      },
+      "in": {
+        "sku": "0AF7-8463-1BC9",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-text-search-enterprise",
+      "name": "Places API Text Search Enterprise",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "E967-44BC-B44D",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 35
+          },
+          {
+            "upTo": 500000,
+            "per1000": 28
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 21
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 10.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.63
+          }
+        ]
+      },
+      "in": {
+        "sku": "D112-1B19-2E0B",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 10.5
+          },
+          {
+            "upTo": null,
+            "per1000": 2.63
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-api-text-search-enterprise-atmosphere",
+      "name": "Places API Text Search Enterprise + Atmosphere",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "120C-BEC3-B48F",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 40
+          },
+          {
+            "upTo": 500000,
+            "per1000": 32
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 24
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 12
+          },
+          {
+            "upTo": null,
+            "per1000": 3.4
+          }
+        ]
+      },
+      "in": {
+        "sku": "0FD0-B42B-DFDA",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 12
+          },
+          {
+            "upTo": null,
+            "per1000": 3.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "environment-air-quality-usage",
+      "name": "Air Quality Usage",
+      "group": "Environment",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "90A9-B3FA-4A12",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": 500000,
+            "per1000": 4
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 2
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.25
+          }
+        ]
+      },
+      "in": {
+        "sku": "03A0-8EE9-1B37",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.25
+          }
+        ]
+      }
+    },
+    {
+      "id": "environment-solar-api-building-insights",
+      "name": "Solar API Building Insights",
+      "group": "Environment",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "1856-4940-856A",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 5
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4.5
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 4
+          },
+          {
+            "upTo": null,
+            "per1000": 3.5
+          }
+        ]
+      },
+      "in": {
+        "sku": "FB57-6661-D18C",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 4
+          },
+          {
+            "upTo": null,
+            "per1000": 3.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "environment-weather-usage",
+      "name": "Weather Usage",
+      "group": "Environment",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": false,
+      "us": {
+        "sku": "9DB8-727A-ACFE",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 0.15
+          },
+          {
+            "upTo": 500000,
+            "per1000": 0.12
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 0.09
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 0.06
+          },
+          {
+            "upTo": null,
+            "per1000": 0.038
+          }
+        ]
+      },
+      "in": {
+        "sku": "0E82-7FAF-9FD2",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.06
+          },
+          {
+            "upTo": null,
+            "per1000": 0.038
+          }
+        ]
+      }
+    },
+    {
+      "id": "environment-pollen-usage",
+      "name": "Pollen Usage",
+      "group": "Environment",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": false,
+      "us": {
+        "sku": "6CDF-1930-8F86",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": 500000,
+            "per1000": 8
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 4
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.5
+          }
+        ]
+      },
+      "in": {
+        "sku": "71B3-45C0-4D9A",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.5
+          }
+        ]
+      }
+    },
+    {
+      "id": "environment-solar-api-data-layers",
+      "name": "Solar API Data Layers",
+      "group": "Environment",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": false,
+      "us": {
+        "sku": "54EE-B608-7DDE",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 75
+          },
+          {
+            "upTo": 500000,
+            "per1000": 37.5
+          },
+          {
+            "upTo": 1000000,
+            "per1000": 33.75
+          },
+          {
+            "upTo": 5000000,
+            "per1000": 30
+          },
+          {
+            "upTo": null,
+            "per1000": 26.25
+          }
+        ]
+      },
+      "in": {
+        "sku": "259F-15E4-980A",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 30
+          },
+          {
+            "upTo": null,
+            "per1000": 26.25
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-autocomplete-per-request",
+      "name": "Autocomplete - Per Request",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "7384-2DE4-D388",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 2.83
+          },
+          {
+            "upTo": null,
+            "per1000": 2.27
+          }
+        ]
+      },
+      "in": {
+        "sku": "2164-BC00-53DC",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.85
+          },
+          {
+            "upTo": null,
+            "per1000": 0.21
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-autocomplete-included-with-places-details-per-session",
+      "name": "Autocomplete (included with Places Details) - Per Session",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "E9C9-934B-DDB1",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "E9C9-934B-DDB1",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-basic-data",
+      "name": "Basic Data",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "75D4-C522-326B",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "5D7B-1F7B-395E",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-find-place-id-only",
+      "name": "Find Place - ID only",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "44A2-D839-A3AC",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "FE05-60A4-CDDF",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-details-id-refresh",
+      "name": "Places Details - ID Refresh",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "2D88-4302-6299",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      },
+      "in": {
+        "sku": "4604-F56B-7086",
+        "freeCap": null,
+        "tiers": [
+          {
+            "upTo": null,
+            "per1000": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-query-autocomplete-per-request",
+      "name": "Query Autocomplete - Per Request",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "C4B1-8805-63EF",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 2.83
+          },
+          {
+            "upTo": null,
+            "per1000": 2.27
+          }
+        ]
+      },
+      "in": {
+        "sku": "59E9-EB83-5CA3",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.85
+          },
+          {
+            "upTo": null,
+            "per1000": 0.21
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-autocomplete-without-places-details-per-session",
+      "name": "Autocomplete without Places Details - Per Session",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "B52C-8320-6DC5",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 17
+          },
+          {
+            "upTo": null,
+            "per1000": 13.6
+          }
+        ]
+      },
+      "in": {
+        "sku": "C625-D3CE-DF37",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-find-current-place",
+      "name": "Find Current Place",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "7218-264C-D1D7",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 30
+          },
+          {
+            "upTo": null,
+            "per1000": 24
+          }
+        ]
+      },
+      "in": {
+        "sku": "0862-F46E-1A1A",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 9
+          },
+          {
+            "upTo": null,
+            "per1000": 2.25
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-find-place",
+      "name": "Find Place",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "DC67-3188-2294",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 17
+          },
+          {
+            "upTo": null,
+            "per1000": 13.6
+          }
+        ]
+      },
+      "in": {
+        "sku": "ECB4-087C-9A27",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-nearby-search",
+      "name": "Places - Nearby Search",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "6B23-8A17-D29D",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 32
+          },
+          {
+            "upTo": null,
+            "per1000": 25.6
+          }
+        ]
+      },
+      "in": {
+        "sku": "CC66-BE0E-2477",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-text-search",
+      "name": "Places - Text Search",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "E95A-86C7-7F47",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 32
+          },
+          {
+            "upTo": null,
+            "per1000": 25.6
+          }
+        ]
+      },
+      "in": {
+        "sku": "102E-888D-5596",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 9.6
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-details",
+      "name": "Places Details",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "FC5C-DF28-543F",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 17
+          },
+          {
+            "upTo": null,
+            "per1000": 13.6
+          }
+        ]
+      },
+      "in": {
+        "sku": "F7AA-FEF9-C90E",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 5.1
+          },
+          {
+            "upTo": null,
+            "per1000": 1.28
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-atmosphere-data",
+      "name": "Atmosphere Data",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": true,
+      "us": {
+        "sku": "D63D-5CC5-302A",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": null,
+            "per1000": 4
+          }
+        ]
+      },
+      "in": {
+        "sku": "0CE0-1963-137E",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.77
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-contact-data",
+      "name": "Contact Data",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": true,
+      "us": {
+        "sku": "F095-CD01-81B2",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 2.4
+          }
+        ]
+      },
+      "in": {
+        "sku": "A03F-5079-C66C",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 0.9
+          },
+          {
+            "upTo": null,
+            "per1000": 0.23
+          }
+        ]
+      }
+    },
+    {
+      "id": "places-places-photo",
+      "name": "Places Photo",
+      "group": "Places",
+      "unit": "requests",
+      "category": "Enterprise",
+      "legacy": true,
+      "us": {
+        "sku": "81E7-85D0-58A7",
+        "freeCap": 1000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 7
+          },
+          {
+            "upTo": null,
+            "per1000": 5.6
+          }
+        ]
+      },
+      "in": {
+        "sku": "9F4B-2E19-1B63",
+        "freeCap": 7000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 2.1
+          },
+          {
+            "upTo": null,
+            "per1000": 0.53
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-directions",
+      "name": "Directions",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "28A8-3EB4-4595",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": null,
+            "per1000": 4
+          }
+        ]
+      },
+      "in": {
+        "sku": "4714-291C-3199",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-distance-matrix",
+      "name": "Distance Matrix",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Essentials",
+      "legacy": true,
+      "us": {
+        "sku": "C1B6-FF9D-7700",
+        "freeCap": 10000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 5
+          },
+          {
+            "upTo": null,
+            "per1000": 4
+          }
+        ]
+      },
+      "in": {
+        "sku": "558A-4F88-F361",
+        "freeCap": 70000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 1.5
+          },
+          {
+            "upTo": null,
+            "per1000": 0.38
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-directions-advanced",
+      "name": "Directions Advanced",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "9407-00C2-CF85",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": null,
+            "per1000": 8
+          }
+        ]
+      },
+      "in": {
+        "sku": "E27B-BD57-FD7D",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      }
+    },
+    {
+      "id": "routes-distance-matrix-advanced",
+      "name": "Distance Matrix Advanced",
+      "group": "Routes",
+      "unit": "requests",
+      "category": "Pro",
+      "legacy": true,
+      "us": {
+        "sku": "DFAE-763F-CF6E",
+        "freeCap": 5000,
+        "tiers": [
+          {
+            "upTo": 100000,
+            "per1000": 10
+          },
+          {
+            "upTo": null,
+            "per1000": 8
+          }
+        ]
+      },
+      "in": {
+        "sku": "C0F4-32AE-F6D1",
+        "freeCap": 35000,
+        "tiers": [
+          {
+            "upTo": 5000000,
+            "per1000": 3
+          },
+          {
+            "upTo": null,
+            "per1000": 0.75
+          }
+        ]
+      }
+    }
+  ]
+}
