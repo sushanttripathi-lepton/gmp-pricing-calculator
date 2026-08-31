@@ -167,10 +167,6 @@ function setVolume(id: string, volume: number) {
   }
 }
 
-function applyPreset(preset: Record<string, number>) {
-  volumes.value = { ...preset }
-}
-
 function clearAll() {
   volumes.value = {}
 }
@@ -374,7 +370,6 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
         :show-india="showIndia"
         @set="setVolume"
         @clear="clearAll"
-        @preset="applyPreset"
         @update:show-legacy="showLegacy = $event"
       />
 
@@ -455,37 +450,56 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
 .app {
   max-width: 1720px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 0 18px 18px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   min-height: 100vh;
 }
 
+/* Frosted and pinned: the totals stay reachable while the SKU list scrolls. */
 .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
   display: flex;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+  padding: 14px 2px 12px;
+  margin-bottom: -2px;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s var(--ease);
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
   flex: 1;
   min-width: 260px;
 }
 
 .logo {
-  font-size: 26px;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  font-size: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 
 h1 {
   margin: 0;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: 17px;
+  font-weight: 680;
+  letter-spacing: -0.02em;
 }
 
 .brand p {
@@ -501,65 +515,94 @@ h1 {
   padding: 7px 10px;
 }
 
+/* --------------------------------------------------------------- controls */
+
 .controls {
   display: flex;
-  gap: 20px;
-  align-items: center;
+  gap: 0;
+  align-items: stretch;
   flex-wrap: wrap;
-  padding: 10px 14px;
+  padding: 0;
+  overflow: hidden;
 }
 
+/* Hairline dividers instead of loose gaps — reads as one instrument panel. */
 .ctl {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   flex-wrap: wrap;
+  padding: 11px 16px;
+  border-right: 1px solid var(--border);
+}
+
+.ctl:last-child {
+  border-right: 0;
 }
 
 .ctl-label {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 650;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--text-3);
 }
 
 .fx {
-  width: 92px;
+  width: 88px;
   text-align: right;
+  font-weight: 600;
 }
 
 .hint {
-  max-width: 300px;
-  line-height: 1.35;
+  max-width: 290px;
+  line-height: 1.4;
 }
 
 .seg {
   display: inline-flex;
-  border: 1px solid var(--border-strong);
-  border-radius: 8px;
-  overflow: hidden;
+  padding: 2px;
+  gap: 2px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
 }
 
 .seg-btn {
-  padding: 6px 11px;
+  padding: 5px 13px;
   border: 0;
-  background: var(--surface);
-  font-size: 13px;
-  font-weight: 500;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 600;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease),
+    box-shadow 0.18s var(--ease);
+}
+
+.seg-btn:hover:not(.on) {
+  color: var(--text);
 }
 
 .seg-btn.on {
-  background: var(--accent);
-  color: #fff;
+  background: var(--surface);
+  color: var(--accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .check {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   font-size: 13px;
   cursor: pointer;
+  user-select: none;
+}
+
+.check input {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
 }
 
 .check:has(input:disabled) {
@@ -567,25 +610,27 @@ h1 {
   color: var(--text-3);
 }
 
+/* ----------------------------------------------------------------- layout */
+
 .layout {
   display: grid;
   grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
-  gap: 12px;
+  gap: 14px;
   align-items: stretch;
   min-height: 0;
   flex: 1;
 }
 
 .col-editor {
-  max-height: calc(100vh - 40px);
+  max-height: calc(100vh - 96px);
   position: sticky;
-  top: 12px;
+  top: 82px;
 }
 
 .col-results {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 14px;
   min-height: 0;
 }
 
@@ -594,23 +639,33 @@ h1 {
 }
 
 .col-results > * {
-  max-height: calc(100vh - 40px);
+  max-height: calc(100vh - 96px);
 }
 
+/* ---------------------------------------------------------------- summary */
+
 .summary {
-  padding: 12px 16px;
+  padding: 14px 18px;
+  border-left: 3px solid var(--good);
 }
 
 .summary-main {
   display: flex;
-  gap: 8px;
+  gap: 9px;
   align-items: baseline;
   flex-wrap: wrap;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+.summary p {
+  margin: 0;
+  max-width: 110ch;
 }
 
 .foot {
-  padding: 4px 4px 16px;
+  padding: 2px 4px 18px;
 }
 
 .foot p {
@@ -636,6 +691,20 @@ h1 {
 @media (max-width: 800px) {
   .col-results {
     grid-template-columns: 1fr;
+  }
+
+  .ctl {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    width: 100%;
+  }
+
+  .ctl:last-child {
+    border-bottom: 0;
+  }
+
+  .hint {
+    max-width: none;
   }
 }
 </style>

@@ -246,10 +246,28 @@ function bandLabel(from: number, to: number) {
   --tone-soft: var(--in-soft);
 }
 
+/* The header carries the region's hue as a soft wash that fades into the
+   surface, so the two panels read as distinct without hard colour blocks. */
 .head {
-  padding: 14px 16px 12px;
-  background: var(--tone-soft);
+  padding: 16px 18px 14px;
+  background: linear-gradient(
+    170deg,
+    var(--tone-soft) 0%,
+    color-mix(in srgb, var(--tone-soft) 45%, var(--surface)) 55%,
+    var(--surface) 100%
+  );
   border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+/* Hairline of the region colour along the very top edge. */
+.head::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: var(--tone);
+  opacity: 0.75;
 }
 
 .title-row {
@@ -260,86 +278,99 @@ function bandLabel(from: number, to: number) {
 
 h2 {
   margin: 0;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   color: var(--tone);
   flex: 1;
 }
 
 .src {
   text-decoration: none;
-  color: var(--text-2);
+  color: var(--text-3);
+  font-weight: 500;
+  transition: color 0.15s var(--ease);
 }
 
 .src:hover {
-  text-decoration: underline;
+  color: var(--tone);
 }
 
 .note {
-  margin: 2px 0 8px;
+  margin: 4px 0 10px;
 }
 
 .total {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 7px;
 }
 
 .amount {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
 }
 
 .sub {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 4px;
+  gap: 9px;
+  margin-top: 6px;
 }
 
 .chip {
-  padding: 1px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 9px;
   border-radius: 999px;
-  font-weight: 600;
+  font-weight: 650;
+  border: 1px solid transparent;
 }
 
 .chip.cheaper {
-  background: color-mix(in srgb, var(--good) 16%, transparent);
+  background: var(--good-soft);
   color: var(--good);
+  border-color: color-mix(in srgb, var(--good) 22%, transparent);
 }
 
 .chip.pricier {
-  background: color-mix(in srgb, var(--bad) 16%, transparent);
+  background: var(--bad-soft);
   color: var(--bad);
+  border-color: color-mix(in srgb, var(--bad) 22%, transparent);
 }
 
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin: 12px 0 0;
+  margin: 14px 0 0;
 }
 
 .stats div {
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  padding: 7px 9px;
   min-width: 0;
+  backdrop-filter: blur(4px);
 }
 
 dt {
   color: var(--text-3);
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 650;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
 }
 
 dd {
-  margin: 1px 0 0;
-  font-weight: 600;
+  margin: 2px 0 0;
+  font-weight: 650;
+  font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -347,36 +378,45 @@ dd {
 /* ------------------------------------------------------- cost composition */
 
 .composition {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .comp-bar {
   display: flex;
-  height: 8px;
+  gap: 2px;
+  height: 9px;
   border-radius: 999px;
   overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: var(--surface-2);
 }
 
 .comp-bar > span {
-  transition: width 0.25s ease;
-  min-width: 2px;
+  transition: width 0.35s var(--ease);
+  min-width: 3px;
+  border-radius: 2px;
+}
+
+.comp-bar > span:first-child {
+  border-radius: 999px 2px 2px 999px;
+}
+
+.comp-bar > span:last-child {
+  border-radius: 2px 999px 999px 2px;
 }
 
 .legend {
   list-style: none;
-  margin: 7px 0 0;
+  margin: 9px 0 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 3px 12px;
+  gap: 4px 14px;
 }
 
 .legend li {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
   max-width: 100%;
 }
@@ -384,7 +424,7 @@ dd {
 .dot {
   width: 8px;
   height: 8px;
-  border-radius: 2px;
+  border-radius: 3px;
   flex: none;
 }
 
@@ -396,7 +436,7 @@ dd {
 }
 
 .lg-share {
-  font-weight: 600;
+  font-weight: 650;
   color: var(--text-3);
 }
 
@@ -409,77 +449,90 @@ dd {
 }
 
 .empty {
-  padding: 28px 16px;
+  padding: 40px 18px;
   text-align: center;
+  line-height: 1.6;
 }
 
 .line {
   border-bottom: 1px solid var(--border);
+  transition: background 0.15s var(--ease);
+}
+
+.line:last-child {
+  border-bottom: 0;
+}
+
+.line:hover {
+  background: var(--surface-2);
 }
 
 .line-head {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 14px 7px;
+  gap: 9px;
+  padding: 11px 16px 8px;
   background: none;
   border: 0;
   text-align: left;
 }
 
-.line-head:hover {
-  background: var(--surface-2);
-}
-
 .chev {
   color: var(--text-3);
-  transition: transform 0.15s;
+  transition: transform 0.2s var(--ease), color 0.15s var(--ease);
+  font-size: 11px;
 }
 
 .chev.open {
   transform: rotate(90deg);
+  color: var(--tone);
 }
 
 .ln-name {
   flex: 1;
   min-width: 0;
+  font-weight: 500;
 }
 
 .ln-vol {
   display: block;
+  font-weight: 400;
+  margin-top: 1px;
 }
 
 .ln-right {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 9px;
   white-space: nowrap;
 }
 
 .ln-cost {
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .ln-share {
   min-width: 30px;
   text-align: right;
+  font-weight: 550;
 }
 
 /* Sits flush under its row, inset to line up with the name column. */
 .ln-bar {
   height: 3px;
-  margin: 0 14px 7px 30px;
+  margin: 0 16px 9px 32px;
   background: transparent;
 }
 
 .ln-bar > span {
-  opacity: 0.55;
+  opacity: 0.5;
 }
 
 .breakdown {
-  padding: 4px 14px 12px 30px;
+  padding: 6px 16px 14px 32px;
   background: var(--surface-2);
+  border-top: 1px solid var(--border);
 }
 
 table {
@@ -490,8 +543,11 @@ table {
 th {
   text-align: right;
   color: var(--text-3);
-  font-weight: 600;
-  padding: 3px 0;
+  font-weight: 650;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 0;
   border-bottom: 1px solid var(--border);
 }
 
@@ -502,14 +558,16 @@ td:first-child {
 
 td {
   text-align: right;
-  padding: 3px 0;
+  padding: 4px 0;
 }
 
 .free-row td {
   color: var(--good);
+  font-weight: 550;
 }
 
 .foot {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
+  line-height: 1.5;
 }
 </style>

@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import type { Sku } from '../lib/pricing'
 import { GROUP_ORDER } from '../lib/pricing'
-import { PRESETS } from '../lib/presets'
 import { formatCompact, formatRate, parseVolume } from '../lib/format'
 
 const props = defineProps<{
@@ -16,7 +15,6 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'set', id: string, volume: number): void
   (e: 'clear'): void
-  (e: 'preset', volumes: Record<string, number>): void
   (e: 'update:showLegacy', v: boolean): void
 }>()
 
@@ -150,22 +148,6 @@ defineExpose({ focusSearch })
         <button class="btn tiny" :disabled="!selectedCount" @click="emit('clear')">Clear all</button>
       </div>
 
-      <div class="presets">
-        <span class="presets-label tiny-text">
-          {{ selectedCount ? 'Load a scenario' : 'Start from a scenario' }}
-        </span>
-        <div class="preset-chips">
-          <button
-            v-for="p in PRESETS"
-            :key="p.id"
-            class="chip-btn"
-            :title="p.blurb"
-            @click="emit('preset', p.volumes)"
-          >
-            {{ p.label }}
-          </button>
-        </div>
-      </div>
     </header>
 
     <div class="list scroll">
@@ -256,11 +238,12 @@ defineExpose({ focusSearch })
 }
 
 .editor-head {
-  padding: 12px;
+  padding: 13px 14px;
   border-bottom: 1px solid var(--border);
+  background: var(--surface);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
 }
 
 .row {
@@ -283,12 +266,23 @@ defineExpose({ focusSearch })
 
 .search {
   width: 100%;
+  padding-right: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+}
+
+.search:focus {
+  background: var(--surface);
+}
+
+.search::-webkit-search-cancel-button {
+  cursor: pointer;
 }
 
 /* Hints the "/" shortcut without stealing a click target. */
 .slash {
   position: absolute;
-  right: 9px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -297,59 +291,23 @@ defineExpose({ focusSearch })
   line-height: 1;
   padding: 3px 6px;
   color: var(--text-3);
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 5px;
+  box-shadow: var(--shadow-sm);
 }
 
 .check {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   color: var(--text-2);
   cursor: pointer;
+  user-select: none;
 }
 
-/* ------------------------------------------------------------- scenarios */
-
-.presets {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.presets-label {
-  color: var(--text-3);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-.preset-chips {
-  display: flex;
-  gap: 5px;
-  flex-wrap: wrap;
-}
-
-.chip-btn {
-  padding: 3px 10px;
-  border: 1px dashed var(--border-strong);
-  border-radius: 999px;
-  background: var(--surface);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-2);
-  white-space: nowrap;
-  transition: background 0.12s, border-color 0.12s, color 0.12s;
-}
-
-.chip-btn:hover {
-  border-style: solid;
-  border-color: var(--accent);
-  background: var(--accent-soft);
-  color: var(--accent);
+.check input {
+  accent-color: var(--accent);
 }
 
 /* ------------------------------------------------------------- SKU list */
@@ -367,22 +325,31 @@ defineExpose({ focusSearch })
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  background: var(--surface-2);
+  gap: 9px;
+  padding: 8px 14px;
+  background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 0;
   border-bottom: 1px solid var(--border);
   text-align: left;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-2);
+  transition: color 0.15s var(--ease);
+}
+
+.group-head:hover {
+  color: var(--text);
 }
 
 .chev {
   display: inline-block;
-  transition: transform 0.15s;
+  font-size: 10px;
+  color: var(--text-3);
+  transition: transform 0.2s var(--ease);
 }
 
 .chev.open {
@@ -397,29 +364,38 @@ defineExpose({ focusSearch })
 .group-active {
   display: inline-grid;
   place-items: center;
-  min-width: 17px;
-  height: 17px;
-  padding: 0 4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
   border-radius: 999px;
   background: var(--sel);
   color: #fff;
   font-size: 10px;
   font-weight: 700;
+  letter-spacing: 0;
 }
 
 .sku {
   display: flex;
   gap: 12px;
   align-items: center;
-  padding: 9px 12px;
+  padding: 10px 14px;
   border-bottom: 1px solid var(--border);
-  transition: background 0.12s;
+  transition: background 0.15s var(--ease), box-shadow 0.15s var(--ease);
 }
 
-/* Selection uses its own hue: blue and orange already mean US and India here. */
+.sku:hover {
+  background: var(--surface-2);
+}
+
+/* Selection uses its own hue: blue and amber already mean US and India here. */
 .sku.active {
   background: color-mix(in srgb, var(--sel) 6%, transparent);
   box-shadow: inset 3px 0 0 var(--sel);
+}
+
+.sku.active:hover {
+  background: color-mix(in srgb, var(--sel) 10%, transparent);
 }
 
 .sku-main {
@@ -432,40 +408,44 @@ defineExpose({ focusSearch })
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
-  font-weight: 500;
+  font-weight: 550;
+  letter-spacing: -0.005em;
 }
 
 .sku-rates {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 2px;
+  margin-top: 3px;
   color: var(--text-2);
 }
 
 .rate.us {
   color: var(--us);
+  font-weight: 550;
 }
 
 .rate.in {
   color: var(--in);
+  font-weight: 550;
 }
 
 .free {
   color: var(--good);
-  font-weight: 600;
+  font-weight: 650;
 }
 
 .sku-input {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 4px;
+  gap: 5px;
 }
 
 .vol {
-  width: 130px;
+  width: 132px;
   text-align: right;
+  font-weight: 600;
 }
 
 .quick {
@@ -476,10 +456,11 @@ defineExpose({ focusSearch })
 .clear:hover {
   border-color: var(--bad);
   color: var(--bad);
+  background: var(--bad-soft);
 }
 
 .empty {
-  padding: 24px;
+  padding: 32px 24px;
   text-align: center;
 }
 
@@ -506,7 +487,6 @@ defineExpose({ focusSearch })
 
   .quick .btn {
     flex: 1;
-    justify-content: center;
   }
 }
 </style>

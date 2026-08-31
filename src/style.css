@@ -1,71 +1,103 @@
+/**
+ * Design tokens. A cool neutral ramp, one accent, and two region hues (US blue
+ * / India amber) that the panels claim — everything else stays achromatic so
+ * the money numbers are the only thing shouting.
+ */
 :root {
-  --bg: #f5f6f8;
+  --bg: #f6f7f9;
+  --bg-tint: #eef1f6;
   --surface: #ffffff;
-  --surface-2: #f0f2f5;
-  --border: #dfe3e8;
-  --border-strong: #c6ccd4;
-  --text: #16191d;
-  --text-2: #5b636d;
-  --text-3: #878f99;
-  --accent: #1a73e8;
-  --accent-soft: #e8f0fe;
-  --us: #1a73e8;
-  --us-soft: #e8f0fe;
-  --in: #e07b00;
-  --in-soft: #fdf1e0;
-  --good: #137333;
-  --bad: #c5221f;
-  --radius: 12px;
-  --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 4px 16px rgba(16, 24, 40, 0.05);
-  --shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.12), 0 2px 6px rgba(16, 24, 40, 0.08);
+  --surface-2: #f3f5f8;
+  --surface-3: #eaeef3;
+  --border: #e5e8ed;
+  --border-strong: #d3d8e0;
+
+  --text: #0d121c;
+  --text-2: #4a5568;
+  --text-3: #8b95a5;
+
+  --accent: #2f6bed;
+  --accent-hover: #2559d4;
+  --accent-soft: #ecf2fe;
+
+  --us: #2f6bed;
+  --us-soft: #eff4fe;
+  --in: #d97706;
+  --in-soft: #fdf5e9;
+
+  --good: #067647;
+  --good-soft: #e8f6ef;
+  --bad: #d02f2c;
+  --bad-soft: #fdeeed;
+
+  /* Selection hue. Blue and amber are spoken for by US and India. */
+  --sel: #7c3aed;
+
+  /* Categorical ramp for cost-composition bars, ordered by cost share. */
+  --c1: #2f6bed;
+  --c2: #0d9488;
+  --c3: #ea8c1c;
+  --c4: #7c3aed;
+  --c5: #0891b2;
+  --c6: #d02f2c;
+  --c-rest: #98a2b3;
+
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 7px;
+
+  --shadow-sm: 0 1px 2px rgba(13, 18, 28, 0.05);
+  --shadow: 0 1px 2px rgba(13, 18, 28, 0.04), 0 2px 8px rgba(13, 18, 28, 0.05);
+  --shadow-lg: 0 2px 4px rgba(13, 18, 28, 0.04), 0 12px 32px rgba(13, 18, 28, 0.1);
+
+  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-
-  /* Categorical ramp for cost-composition bars. Ordered by cost share, so c1
-     carries the most ink and needs the most contrast against both surfaces. */
-  --c1: #3366cc;
-  --c2: #0f9d58;
-  --c3: #e8710a;
-  --c4: #7b48c8;
-  --c5: #0b8ea8;
-  --c6: #c5221f;
-  --c-rest: #9aa4b0;
-
-  /* Selection hue. Blue and orange are spoken for by US and India. */
-  --sel: #7b48c8;
-
   color-scheme: light;
 }
 
 :root[data-theme='dark'] {
-  --bg: #101317;
-  --surface: #181c22;
-  --surface-2: #1f242b;
-  --border: #2b323b;
-  --border-strong: #3b444f;
-  --text: #e7eaee;
-  --text-2: #9aa4b0;
-  --text-3: #6f7a86;
-  --accent: #7cadf5;
-  --accent-soft: #1b2838;
-  --us: #7cadf5;
-  --us-soft: #17263a;
-  --in: #f0a83c;
-  --in-soft: #33260f;
-  --good: #6cc48a;
-  --bad: #f08a86;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --bg: #0a0d13;
+  --bg-tint: #0f131b;
+  --surface: #141922;
+  --surface-2: #1b212c;
+  --surface-3: #232a37;
+  --border: #262d3a;
+  --border-strong: #38414f;
+
+  --text: #e9edf3;
+  --text-2: #9aa5b6;
+  --text-3: #6c7789;
+
+  --accent: #6f9bf7;
+  --accent-hover: #86adf9;
+  --accent-soft: #16233a;
+
+  --us: #6f9bf7;
+  --us-soft: #141f33;
+  --in: #eba450;
+  --in-soft: #2a1f10;
+
+  --good: #4ec98a;
+  --good-soft: #10241a;
+  --bad: #f2807c;
+  --bad-soft: #2a1516;
+
+  --sel: #a78bfa;
 
   /* Lifted and desaturated — the light ramp goes muddy on a dark surface. */
-  --c1: #7ba7f0;
-  --c2: #5cc98a;
-  --c3: #f2a55c;
-  --c4: #b18cf0;
-  --c5: #4fc0d8;
-  --c6: #f08a86;
-  --c-rest: #6f7a86;
+  --c1: #6f9bf7;
+  --c2: #2dd4bf;
+  --c3: #f0a55c;
+  --c4: #a78bfa;
+  --c5: #38bdf8;
+  --c6: #f2807c;
+  --c-rest: #6c7789;
 
-  --sel: #b18cf0;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 2px 10px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 2px 6px rgba(0, 0, 0, 0.4), 0 16px 40px rgba(0, 0, 0, 0.45);
 
   color-scheme: dark;
 }
@@ -81,13 +113,19 @@ body {
 }
 
 body {
-  background: var(--bg);
+  /* A soft tinted wash keeps the flat cards from floating on dead grey. */
+  background:
+    radial-gradient(1200px 600px at 12% -10%, var(--bg-tint), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
   color: var(--text);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif;
+  font-family: "Inter var", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.5;
+  letter-spacing: -0.005em;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 button {
@@ -103,6 +141,7 @@ input {
 
 a {
   color: var(--accent);
+  text-underline-offset: 2px;
 }
 
 .card {
@@ -112,61 +151,114 @@ a {
   box-shadow: var(--shadow);
 }
 
+/* ------------------------------------------------------------------ buttons */
+
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 7px 12px;
+  padding: 7px 13px;
   border: 1px solid var(--border-strong);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: var(--surface);
+  box-shadow: var(--shadow-sm);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 550;
   white-space: nowrap;
-  transition: background 0.12s, border-color 0.12s;
+  transition: background 0.15s var(--ease), border-color 0.15s var(--ease),
+    box-shadow 0.15s var(--ease), transform 0.1s var(--ease), color 0.15s var(--ease);
 }
 
 .btn:hover {
   background: var(--surface-2);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 .btn.tiny {
-  padding: 3px 8px;
+  padding: 3px 9px;
   font-size: 12px;
-  border-radius: 6px;
+  border-radius: var(--radius-xs);
+  box-shadow: none;
+}
+
+.btn.tiny:hover {
+  background: var(--surface-3);
 }
 
 .btn.primary {
   background: var(--accent);
-  border-color: var(--accent);
+  border-color: transparent;
   color: #fff;
+  box-shadow: 0 1px 2px rgba(13, 18, 28, 0.12);
 }
 
 .btn.primary:hover {
-  filter: brightness(1.06);
-  background: var(--accent);
+  background: var(--accent-hover);
+  box-shadow: 0 2px 10px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
+.btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn:disabled:hover {
+  background: var(--surface);
+  transform: none;
+}
+
+/* ------------------------------------------------------------------- fields */
+
 .field {
-  padding: 7px 10px;
+  padding: 7px 11px;
   border: 1px solid var(--border-strong);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: var(--surface);
   outline: none;
+  transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+}
+
+.field:hover {
+  border-color: color-mix(in srgb, var(--border-strong) 60%, var(--text-3));
 }
 
 .field:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  box-shadow: var(--ring);
 }
+
+/* Keyboard users get a clear ring; mouse users never see it. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+.field:focus-visible {
+  outline: none;
+}
+
+.btn:focus-visible {
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------------ badges */
 
 .badge {
   display: inline-block;
   padding: 1px 7px;
   border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  font-size: 10.5px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
   border: 1px solid transparent;
 }
 
@@ -176,12 +268,12 @@ a {
 }
 
 .badge.pro {
-  background: color-mix(in srgb, var(--in) 14%, transparent);
+  background: color-mix(in srgb, var(--in) 13%, transparent);
   color: var(--in);
 }
 
 .badge.enterprise {
-  background: color-mix(in srgb, var(--bad) 14%, transparent);
+  background: color-mix(in srgb, var(--bad) 13%, transparent);
   color: var(--bad);
 }
 
@@ -190,6 +282,8 @@ a {
   color: var(--text-3);
   border-color: var(--border);
 }
+
+/* ------------------------------------------------------------------- utils */
 
 .muted {
   color: var(--text-2);
@@ -204,45 +298,7 @@ a {
   font-feature-settings: "tnum";
 }
 
-.scroll::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-.scroll::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
-  border-radius: 999px;
-  border: 3px solid var(--surface);
-}
-
-/* Keyboard users get a clear ring; mouse users never see it. The app is dense,
-   so the ring has to read against both the surface and the tinted panel heads. */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.btn:focus-visible,
-.field:focus-visible {
-  outline-offset: 1px;
-}
-
-.btn:active {
-  transform: translateY(0.5px);
-}
-
-.btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
-}
-
-.btn:disabled:hover {
-  background: var(--surface);
-}
-
-/* Horizontal proportion bar, shared by the composition strip and the per-line
-   share indicators. Width is set inline from the computed share. */
+/* Proportion bar shared by the composition strip and per-line share bars. */
 .bar {
   position: relative;
   height: 6px;
@@ -255,7 +311,7 @@ a {
   display: block;
   height: 100%;
   border-radius: 999px;
-  transition: width 0.25s ease;
+  transition: width 0.35s var(--ease);
 }
 
 .sr-only {
@@ -268,6 +324,25 @@ a {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+  border: 3px solid var(--surface);
+}
+
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--text-3);
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {

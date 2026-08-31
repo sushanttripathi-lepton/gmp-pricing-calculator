@@ -127,22 +127,28 @@ const blended = (costUsd: number, volume: number) =>
 
 <style scoped>
 .scale {
-  padding: 12px 16px 14px;
+  padding: 15px 18px 16px;
 }
 
 .scale-head h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-2);
 }
 
 .scale-head p {
-  margin: 2px 0 10px;
+  margin: 4px 0 12px;
   max-width: 88ch;
+  line-height: 1.5;
 }
 
 .table-wrap {
   overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 table {
@@ -154,27 +160,44 @@ table {
 th {
   text-align: right;
   color: var(--text-3);
-  font-weight: 600;
+  font-weight: 650;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: 11px;
-  padding: 0 10px 4px 0;
+  letter-spacing: 0.06em;
+  font-size: 10px;
+  padding: 8px 12px 8px 0;
+  background: var(--surface-2);
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
 
+th:first-child {
+  padding-left: 14px;
+}
+
 td {
   text-align: right;
-  padding: 6px 10px 6px 0;
+  padding: 9px 12px 9px 0;
   border-bottom: 1px solid var(--border);
+}
+
+td:first-child {
+  padding-left: 14px;
+}
+
+tbody tr {
+  transition: background 0.15s var(--ease);
+}
+
+tbody tr:hover {
+  background: var(--surface-2);
 }
 
 tbody tr:last-child td {
   border-bottom: 0;
 }
 
-.base {
-  background: var(--surface-2);
+.base td {
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
 }
 
 .c-mult {
@@ -185,15 +208,21 @@ tbody tr:last-child td {
 
 .mult {
   font-weight: 700;
+  font-size: 14px;
+  letter-spacing: -0.02em;
 }
 
 .today {
-  margin-left: 6px;
+  margin-left: 7px;
   font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 .c-cost {
-  font-weight: 600;
+  font-weight: 650;
   white-space: nowrap;
 }
 
@@ -207,13 +236,18 @@ tbody tr:last-child td {
 
 .c-bar {
   width: 34%;
-  padding-right: 14px;
+  padding-right: 16px;
 }
 
 .bars {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
+}
+
+.bars .bar {
+  height: 5px;
+  background: var(--surface-3);
 }
 
 .c-rate {
@@ -221,6 +255,15 @@ tbody tr:last-child td {
 }
 
 .takeaway {
-  margin: 10px 0 0;
+  margin: 12px 0 0;
+  padding: 9px 13px;
+  border-radius: var(--radius-sm);
+  background: var(--good-soft);
+  border: 1px solid color-mix(in srgb, var(--good) 20%, transparent);
+  line-height: 1.5;
+}
+
+.takeaway strong {
+  color: var(--good);
 }
 </style>
