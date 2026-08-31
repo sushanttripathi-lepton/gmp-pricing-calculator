@@ -30,6 +30,9 @@
   --bad: #d02f2c;
   --bad-soft: #fdeeed;
 
+  /* Raised pill inside a recessed track (segmented control). */
+  --raised: var(--surface);
+
   /* Selection hue. Blue and amber are spoken for by US and India. */
   --sel: #7c3aed;
 
@@ -84,6 +87,7 @@
   --bad: #f2807c;
   --bad-soft: #2a1516;
 
+  --raised: var(--surface-3);
   --sel: #a78bfa;
 
   /* Lifted and desaturated — the light ramp goes muddy on a dark surface. */

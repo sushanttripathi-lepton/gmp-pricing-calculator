@@ -585,7 +585,7 @@ h1 {
 }
 
 .seg-btn.on {
-  background: var(--surface);
+  background: var(--raised);
   color: var(--accent);
   box-shadow: var(--shadow-sm);
 }
