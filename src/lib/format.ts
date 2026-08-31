@@ -24,6 +24,21 @@ export function formatInr(n: number, precise = false) {
   }).format(n)
 }
 
+/**
+ * Short money for tight cells (projection strip, composition legend), where the
+ * exact cent matters less than the magnitude: $1.2K, ₹4.4Cr.
+ */
+export function formatMoneyCompact(n: number, currency: 'USD' | 'INR', fx = 1) {
+  const v = n * fx
+  if (v === 0) return currency === 'INR' ? '₹0' : '$0'
+  return new Intl.NumberFormat(currency === 'INR' ? 'en-IN' : 'en-US', {
+    style: 'currency',
+    currency,
+    notation: 'compact',
+    maximumFractionDigits: Math.abs(v) < 10 ? 2 : 1,
+  }).format(v)
+}
+
 /** Prices per 1,000 calls are small; keep enough precision to see $0.045. */
 export function formatRate(n: number, currency: 'USD' | 'INR', fx = 1) {
   const v = n * fx

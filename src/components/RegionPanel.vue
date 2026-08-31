@@ -13,6 +13,9 @@ const props = defineProps<{
   totals: RegionTotal
   /** Other panel's monthly total, in USD, for the comparison chip. */
   compareUsd: number | null
+  /** SKU id → ramp colour, assigned once for both panels so the same SKU keeps
+      the same colour on each side. Anything absent falls into the remainder. */
+  colors: Record<string, string>
   sourceUrl: string
 }>()
 
@@ -32,6 +35,42 @@ const delta = computed(() => {
 const blended = computed(() =>
   props.totals.volume > 0 ? (props.totals.total / props.totals.volume) * 1000 : 0,
 )
+
+/**
+ * Where the money actually goes. Segments run in this panel's own cost order,
+ * but each colour is pinned to a SKU by the parent so a line reads as the same
+ * colour in both panels; everything outside the shared ramp collapses into one
+ * grey remainder rather than degrading the bar into confetti.
+ */
+const composition = computed(() => {
+  const total = props.totals.total
+  if (total <= 0) return []
+  const paid = props.totals.lines.filter((l) => l.result.cost > 0)
+  const segments = paid
+    .filter((l) => props.colors[l.sku.id])
+    .map((line) => ({
+      key: line.sku.id,
+      name: line.sku.name,
+      share: (line.result.cost / total) * 100,
+      color: props.colors[line.sku.id],
+    }))
+  const rest = paid.filter((l) => !props.colors[l.sku.id])
+  if (rest.length) {
+    const cost = rest.reduce((sum, l) => sum + l.result.cost, 0)
+    segments.push({
+      key: '__rest',
+      name: `${rest.length} more SKU${rest.length === 1 ? '' : 's'}`,
+      share: (cost / total) * 100,
+      color: 'var(--c-rest)',
+    })
+  }
+  return segments
+})
+
+/** Share of this panel's bill, used for the per-line proportion bar. */
+function shareOf(cost: number) {
+  return props.totals.total > 0 ? (cost / props.totals.total) * 100 : 0
+}
 
 function bandLabel(from: number, to: number) {
   return `${formatCompact(from)}–${formatCompact(to)}`
@@ -84,6 +123,30 @@ function bandLabel(from: number, to: number) {
           <dd>{{ rate(blended) }}</dd>
         </div>
       </dl>
+
+      <div v-if="composition.length" class="composition">
+        <div
+          class="comp-bar"
+          role="img"
+          :aria-label="`Cost split: ${composition
+            .map((s) => `${s.name} ${s.share.toFixed(0)}%`)
+            .join(', ')}`"
+        >
+          <span
+            v-for="seg in composition"
+            :key="seg.key"
+            :style="{ width: `${seg.share}%`, background: seg.color }"
+            :title="`${seg.name} — ${seg.share.toFixed(1)}%`"
+          />
+        </div>
+        <ul class="legend tiny-text">
+          <li v-for="seg in composition" :key="seg.key">
+            <span class="dot" :style="{ background: seg.color }" />
+            <span class="lg-name">{{ seg.name }}</span>
+            <span class="lg-share num muted">{{ seg.share.toFixed(0) }}%</span>
+          </li>
+        </ul>
+      </div>
     </header>
 
     <div class="lines scroll">
@@ -92,21 +155,41 @@ function bandLabel(from: number, to: number) {
       </p>
 
       <div v-for="line in totals.lines" :key="line.sku.id" class="line">
-        <button class="line-head" @click="open[line.sku.id] = !open[line.sku.id]">
-          <span class="chev" :class="{ open: open[line.sku.id] }">▸</span>
+        <button
+          class="line-head"
+          :aria-expanded="!!open[line.sku.id]"
+          @click="open[line.sku.id] = !open[line.sku.id]"
+        >
+          <span class="chev" :class="{ open: open[line.sku.id] }" aria-hidden="true">▸</span>
           <span class="ln-name">
             {{ line.sku.name }}
             <span class="ln-vol muted tiny-text num">
               {{ formatInt(line.volume) }} {{ line.sku.unit }}
             </span>
           </span>
-          <span class="ln-cost num">
-            <template v-if="line.result.unlimitedFree">
-              <span class="freeflag">free</span>
-            </template>
-            <template v-else>{{ money(line.result.cost, true) }}</template>
+          <span class="ln-right">
+            <span class="ln-cost num">
+              <template v-if="line.result.unlimitedFree">
+                <span class="freeflag">free</span>
+              </template>
+              <template v-else>{{ money(line.result.cost, true) }}</template>
+            </span>
+            <span
+              v-if="!line.result.unlimitedFree && totals.total > 0"
+              class="ln-share num tiny-text muted"
+            >
+              {{ shareOf(line.result.cost).toFixed(0) }}%
+            </span>
           </span>
         </button>
+
+        <div
+          v-if="!line.result.unlimitedFree && totals.total > 0"
+          class="bar ln-bar"
+          aria-hidden="true"
+        >
+          <span :style="{ width: `${shareOf(line.result.cost)}%`, background: 'var(--tone)' }" />
+        </div>
 
         <div v-if="open[line.sku.id]" class="breakdown">
           <p v-if="line.result.unlimitedFree" class="tiny-text muted">
@@ -261,6 +344,64 @@ dd {
   text-overflow: ellipsis;
 }
 
+/* ------------------------------------------------------- cost composition */
+
+.composition {
+  margin-top: 10px;
+}
+
+.comp-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.comp-bar > span {
+  transition: width 0.25s ease;
+  min-width: 2px;
+}
+
+.legend {
+  list-style: none;
+  margin: 7px 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px 12px;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex: none;
+}
+
+.lg-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-2);
+}
+
+.lg-share {
+  font-weight: 600;
+  color: var(--text-3);
+}
+
+/* -------------------------------------------------------------- line list */
+
 .lines {
   flex: 1;
   min-height: 0;
@@ -281,7 +422,7 @@ dd {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 14px;
+  padding: 9px 14px 7px;
   background: none;
   border: 0;
   text-align: left;
@@ -309,14 +450,31 @@ dd {
   display: block;
 }
 
-.ln-cost {
-  font-weight: 600;
+.ln-right {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
   white-space: nowrap;
 }
 
-.freeflag {
-  color: var(--good);
+.ln-cost {
   font-weight: 600;
+}
+
+.ln-share {
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Sits flush under its row, inset to line up with the name column. */
+.ln-bar {
+  height: 3px;
+  margin: 0 14px 7px 30px;
+  background: transparent;
+}
+
+.ln-bar > span {
+  opacity: 0.55;
 }
 
 .breakdown {

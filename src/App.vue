@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import UsageEditor from './components/UsageEditor.vue'
 import RegionPanel from './components/RegionPanel.vue'
+import ScaleProjection from './components/ScaleProjection.vue'
+import type { ProjectionRow } from './components/ScaleProjection.vue'
 import { catalog, costFor, totalFor } from './lib/pricing'
 import type { Sku } from './lib/pricing'
 import { formatInt } from './lib/format'
@@ -18,6 +20,7 @@ const showUs = ref(true)
 const showIndia = ref(true)
 const theme = ref<'light' | 'dark' | 'system'>('system')
 const copied = ref(false)
+const editor = ref<InstanceType<typeof UsageEditor> | null>(null)
 
 /* ---------------------------------------------------------------- state io */
 
@@ -64,7 +67,22 @@ function syncUrl() {
 }
 
 async function copyLink() {
-  await navigator.clipboard.writeText(shareUrl())
+  const url = shareUrl()
+  try {
+    await navigator.clipboard.writeText(url)
+  } catch {
+    // Clipboard API needs a secure context; fall back to a selection copy so
+    // the button still does something useful over plain http.
+    const ta = document.createElement('textarea')
+    ta.value = url
+    ta.setAttribute('readonly', '')
+    ta.style.position = 'fixed'
+    ta.style.opacity = '0'
+    document.body.appendChild(ta)
+    ta.select()
+    document.execCommand('copy')
+    document.body.removeChild(ta)
+  }
   copied.value = true
   setTimeout(() => (copied.value = false), 1600)
 }
@@ -82,6 +100,10 @@ function cycleTheme() {
   theme.value = theme.value === 'system' ? 'light' : theme.value === 'light' ? 'dark' : 'system'
 }
 
+const themeLabel = computed(() =>
+  theme.value === 'system' ? 'System theme' : theme.value === 'light' ? 'Light theme' : 'Dark theme',
+)
+
 /* ---------------------------------------------------------------- totals */
 
 const usTotals = computed(() => totalFor(skus, volumes.value, 'us', applyFreeCap.value))
@@ -92,6 +114,46 @@ const savings = computed(() => {
   const india = inTotals.value.total
   if (us <= 0 && india <= 0) return null
   return { abs: us - india, pct: us > 0 ? ((us - india) / us) * 100 : 0 }
+})
+
+/**
+ * Pin a ramp colour to each of the biggest-spending SKUs, ranked by whichever
+ * region charges more for it. Both panels read from this one map, so a SKU
+ * keeps its colour across the comparison even when the panels rank it
+ * differently — which they routinely do, since the two lists tier differently.
+ */
+const RAMP = 6
+
+const compositionColors = computed(() => {
+  const peak = new Map<string, number>()
+  for (const line of [...usTotals.value.lines, ...inTotals.value.lines]) {
+    if (line.result.cost <= 0) continue
+    peak.set(line.sku.id, Math.max(peak.get(line.sku.id) ?? 0, line.result.cost))
+  }
+  const map: Record<string, string> = {}
+  ;[...peak.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, RAMP)
+    .forEach(([id], i) => (map[id] = `var(--c${i + 1})`))
+  return map
+})
+
+/**
+ * Re-price the whole mix at multiples of the entered volume. Cheap enough to do
+ * on every keystroke, and it is the only place the graduated tiers become
+ * visible as a trend rather than a single point.
+ */
+const SCALE_STEPS = [1, 2, 5, 10, 25]
+
+const projection = computed<ProjectionRow[]>(() => {
+  if (!usTotals.value.volume) return []
+  return SCALE_STEPS.map((mult) => {
+    const scaled: Record<string, number> = {}
+    for (const [id, n] of Object.entries(volumes.value)) scaled[id] = n * mult
+    const us = totalFor(skus, scaled, 'us', applyFreeCap.value)
+    const ind = totalFor(skus, scaled, 'in', applyFreeCap.value)
+    return { mult, volume: us.volume, us: us.total, in: ind.total }
+  })
 })
 
 /* --------------------------------------------------------------- actions */
@@ -105,8 +167,22 @@ function setVolume(id: string, volume: number) {
   }
 }
 
+function applyPreset(preset: Record<string, number>) {
+  volumes.value = { ...preset }
+}
+
 function clearAll() {
   volumes.value = {}
+}
+
+/** "/" jumps to search the way it does in most dense tools. */
+function onKeydown(e: KeyboardEvent) {
+  if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return
+  const el = e.target as HTMLElement | null
+  if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return
+  if (el?.isContentEditable) return
+  e.preventDefault()
+  editor.value?.focusSearch()
 }
 
 function exportCsv() {
@@ -184,7 +260,10 @@ onMounted(() => {
   if (saved) theme.value = saved
   applyTheme()
   readUrl()
+  window.addEventListener('keydown', onKeydown)
 })
+
+onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
 
 watch(theme, applyTheme)
 watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia], syncUrl, {
@@ -196,7 +275,7 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
   <div class="app">
     <header class="topbar">
       <div class="brand">
-        <span class="logo">🗺️</span>
+        <span class="logo" aria-hidden="true">🗺️</span>
         <div>
           <h1>Google Maps Platform pricing calculator</h1>
           <p class="tiny-text muted">
@@ -206,18 +285,30 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
       </div>
 
       <div class="topbar-actions">
-        <button class="btn" :title="`Theme: ${theme}`" @click="cycleTheme">
-          {{ theme === 'dark' ? '🌙' : theme === 'light' ? '☀️' : '🖥️' }}
+        <button class="btn icon" :aria-label="`${themeLabel} — click to change`" @click="cycleTheme">
+          <span aria-hidden="true">
+            {{ theme === 'dark' ? '🌙' : theme === 'light' ? '☀️' : '🖥️' }}
+          </span>
         </button>
         <button class="btn" :disabled="!usTotals.lines.length" @click="exportCsv">Export CSV</button>
         <button class="btn primary" @click="copyLink">{{ copied ? 'Copied ✓' : 'Copy link' }}</button>
+        <span class="sr-only" role="status" aria-live="polite">
+          {{ copied ? 'Shareable link copied to clipboard' : '' }}
+        </span>
       </div>
     </header>
 
     <div class="controls card">
       <div class="ctl">
-        <span class="ctl-label">USD → INR</span>
-        <input v-model.number="fx" class="field fx num" type="number" min="1" step="0.01" />
+        <span class="ctl-label" id="fx-label">USD → INR</span>
+        <input
+          v-model.number="fx"
+          class="field fx num"
+          type="number"
+          min="1"
+          step="0.01"
+          aria-labelledby="fx-label"
+        />
         <span class="tiny-text muted hint">
           Google publishes both price lists in USD and bills India accounts in INR at its own
           conversion rate — set yours here.
@@ -226,10 +317,11 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
 
       <div v-if="showIndia" class="ctl">
         <span class="ctl-label">India panel shows</span>
-        <div class="seg">
+        <div class="seg" role="group" aria-label="India panel currency">
           <button
             class="seg-btn"
             :class="{ on: indiaCurrency === 'INR' }"
+            :aria-pressed="indiaCurrency === 'INR'"
             @click="indiaCurrency = 'INR'"
           >
             ₹ INR
@@ -237,6 +329,7 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
           <button
             class="seg-btn"
             :class="{ on: indiaCurrency === 'USD' }"
+            :aria-pressed="indiaCurrency === 'USD'"
             @click="indiaCurrency = 'USD'"
           >
             $ USD
@@ -272,6 +365,7 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
 
     <main class="layout">
       <UsageEditor
+        ref="editor"
         class="col-editor"
         :skus="skus"
         :volumes="volumes"
@@ -280,6 +374,7 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
         :show-india="showIndia"
         @set="setVolume"
         @clear="clearAll"
+        @preset="applyPreset"
         @update:show-legacy="showLegacy = $event"
       />
 
@@ -293,6 +388,7 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
           :fx="1"
           :totals="usTotals"
           :compare-usd="showIndia ? inTotals.total || null : null"
+          :colors="compositionColors"
           :source-url="catalog.sources.us"
         />
         <RegionPanel
@@ -308,6 +404,7 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
           :fx="indiaCurrency === 'INR' ? fx : 1"
           :totals="inTotals"
           :compare-usd="showUs ? usTotals.total || null : null"
+          :colors="compositionColors"
           :source-url="catalog.sources.in"
         />
       </div>
@@ -331,6 +428,15 @@ watch([volumes, fx, applyFreeCap, showLegacy, indiaCurrency, showUs, showIndia],
         of five.
       </p>
     </section>
+
+    <ScaleProjection
+      v-if="projection.length"
+      :rows="projection"
+      :show-us="showUs"
+      :show-india="showIndia"
+      :currency="indiaCurrency"
+      :fx="indiaCurrency === 'INR' ? fx : 1"
+    />
 
     <footer class="foot">
       <p class="tiny-text muted">
@@ -389,6 +495,10 @@ h1 {
 .topbar-actions {
   display: flex;
   gap: 8px;
+}
+
+.icon {
+  padding: 7px 10px;
 }
 
 .controls {

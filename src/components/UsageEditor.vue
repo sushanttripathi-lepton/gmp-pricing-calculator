@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import type { Sku } from '../lib/pricing'
 import { GROUP_ORDER } from '../lib/pricing'
+import { PRESETS } from '../lib/presets'
 import { formatCompact, formatRate, parseVolume } from '../lib/format'
 
 const props = defineProps<{
@@ -15,11 +16,13 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'set', id: string, volume: number): void
   (e: 'clear'): void
+  (e: 'preset', volumes: Record<string, number>): void
   (e: 'update:showLegacy', v: boolean): void
 }>()
 
 const query = ref('')
 const collapsed = ref<Record<string, boolean>>({})
+const searchEl = ref<HTMLInputElement | null>(null)
 
 const QUICK = [10_000, 100_000, 1_000_000, 10_000_000]
 
@@ -55,6 +58,15 @@ const sections = computed(() => {
 })
 
 const selectedCount = computed(() => props.skus.filter((s) => (props.volumes[s.id] ?? 0) > 0).length)
+
+/** How many SKUs each group currently has volume on — shown as a group badge. */
+const activeByGroup = computed(() => {
+  const counts: Record<string, number> = {}
+  for (const [group, items] of sections.value) {
+    counts[group] = items.filter((s) => (props.volumes[s.id] ?? 0) > 0).length
+  }
+  return counts
+})
 
 /** Entry price per 1,000 — the first tier that actually costs something. */
 function startingRate(sku: Sku, region: 'us' | 'in') {
@@ -97,19 +109,31 @@ function bump(sku: Sku, value: number) {
 function toggle(key: string) {
   collapsed.value[key] = !collapsed.value[key]
 }
+
+function focusSearch() {
+  searchEl.value?.focus()
+  searchEl.value?.select()
+}
+
+defineExpose({ focusSearch })
 </script>
 
 <template>
   <section class="editor card">
     <header class="editor-head">
-      <div class="row">
+      <div class="row search-row">
         <input
+          ref="searchEl"
           v-model="query"
           class="field search"
           type="search"
-          placeholder="Search 74 SKUs — e.g. geocoding, dynamic maps, routes…"
+          aria-label="Search SKUs"
+          :placeholder="`Search ${skus.length} SKUs — e.g. geocoding, dynamic maps, routes…`"
+          @keydown.esc="query = ''"
         />
+        <kbd v-show="!query" class="slash" aria-hidden="true">/</kbd>
       </div>
+
       <div class="row meta">
         <span class="muted tiny-text">
           {{ selectedCount }} SKU{{ selectedCount === 1 ? '' : 's' }} with volume
@@ -125,13 +149,33 @@ function toggle(key: string) {
         </label>
         <button class="btn tiny" :disabled="!selectedCount" @click="emit('clear')">Clear all</button>
       </div>
+
+      <div class="presets">
+        <span class="presets-label tiny-text">
+          {{ selectedCount ? 'Load a scenario' : 'Start from a scenario' }}
+        </span>
+        <div class="preset-chips">
+          <button
+            v-for="p in PRESETS"
+            :key="p.id"
+            class="chip-btn"
+            :title="p.blurb"
+            @click="emit('preset', p.volumes)"
+          >
+            {{ p.label }}
+          </button>
+        </div>
+      </div>
     </header>
 
     <div class="list scroll">
       <div v-for="[group, items] in sections" :key="group" class="group">
-        <button class="group-head" @click="toggle(group)">
-          <span class="chev" :class="{ open: !collapsed[group] }">▸</span>
+        <button class="group-head" :aria-expanded="!collapsed[group]" @click="toggle(group)">
+          <span class="chev" :class="{ open: !collapsed[group] }" aria-hidden="true">▸</span>
           <span class="group-name">{{ group }}</span>
+          <span v-if="activeByGroup[group]" class="group-active num">
+            {{ activeByGroup[group] }}
+          </span>
           <span class="muted tiny-text">{{ items.length }}</span>
         </button>
 
@@ -186,8 +230,8 @@ function toggle(key: string) {
                 </button>
                 <button
                   v-if="(volumes[sku.id] ?? 0) > 0"
-                  class="btn tiny"
-                  title="Clear"
+                  class="btn tiny clear"
+                  :title="`Clear ${sku.name}`"
                   @click="bump(sku, 0)"
                 >
                   ×
@@ -233,8 +277,29 @@ function toggle(key: string) {
   flex: 1;
 }
 
+.search-row {
+  position: relative;
+}
+
 .search {
   width: 100%;
+}
+
+/* Hints the "/" shortcut without stealing a click target. */
+.slash {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px 6px;
+  color: var(--text-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
 }
 
 .check {
@@ -244,6 +309,50 @@ function toggle(key: string) {
   color: var(--text-2);
   cursor: pointer;
 }
+
+/* ------------------------------------------------------------- scenarios */
+
+.presets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.presets-label {
+  color: var(--text-3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.preset-chips {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.chip-btn {
+  padding: 3px 10px;
+  border: 1px dashed var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.chip-btn:hover {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* ------------------------------------------------------------- SKU list */
 
 .list {
   overflow-y: auto;
@@ -284,17 +393,33 @@ function toggle(key: string) {
   flex: 1;
 }
 
+/* How many SKUs in this group are already priced — survives collapsing. */
+.group-active {
+  display: inline-grid;
+  place-items: center;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--sel);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
 .sku {
   display: flex;
   gap: 12px;
   align-items: center;
   padding: 9px 12px;
   border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
 }
 
+/* Selection uses its own hue: blue and orange already mean US and India here. */
 .sku.active {
-  background: color-mix(in srgb, var(--accent) 5%, transparent);
-  box-shadow: inset 3px 0 0 var(--accent);
+  background: color-mix(in srgb, var(--sel) 6%, transparent);
+  box-shadow: inset 3px 0 0 var(--sel);
 }
 
 .sku-main {
@@ -348,8 +473,40 @@ function toggle(key: string) {
   gap: 3px;
 }
 
+.clear:hover {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
 .empty {
   padding: 24px;
   text-align: center;
+}
+
+/* On narrow screens the two-column row collapses; the input goes full width so
+   the quick-set buttons stay tappable instead of squeezing to slivers. */
+@media (max-width: 560px) {
+  .sku {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .sku-input {
+    align-items: stretch;
+  }
+
+  .vol {
+    width: 100%;
+  }
+
+  .quick {
+    justify-content: flex-end;
+  }
+
+  .quick .btn {
+    flex: 1;
+    justify-content: center;
+  }
 }
 </style>

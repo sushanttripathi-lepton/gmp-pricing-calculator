@@ -17,7 +17,22 @@
   --bad: #c5221f;
   --radius: 12px;
   --shadow: 0 1px 2px rgba(16, 24, 40, 0.06), 0 4px 16px rgba(16, 24, 40, 0.05);
+  --shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.12), 0 2px 6px rgba(16, 24, 40, 0.08);
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Categorical ramp for cost-composition bars. Ordered by cost share, so c1
+     carries the most ink and needs the most contrast against both surfaces. */
+  --c1: #3366cc;
+  --c2: #0f9d58;
+  --c3: #e8710a;
+  --c4: #7b48c8;
+  --c5: #0b8ea8;
+  --c6: #c5221f;
+  --c-rest: #9aa4b0;
+
+  /* Selection hue. Blue and orange are spoken for by US and India. */
+  --sel: #7b48c8;
+
   color-scheme: light;
 }
 
@@ -39,6 +54,19 @@
   --good: #6cc48a;
   --bad: #f08a86;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.4);
+
+  /* Lifted and desaturated — the light ramp goes muddy on a dark surface. */
+  --c1: #7ba7f0;
+  --c2: #5cc98a;
+  --c3: #f2a55c;
+  --c4: #b18cf0;
+  --c5: #4fc0d8;
+  --c6: #f08a86;
+  --c-rest: #6f7a86;
+
+  --sel: #b18cf0;
+
   color-scheme: dark;
 }
 
@@ -185,4 +213,69 @@ a {
   background: var(--border-strong);
   border-radius: 999px;
   border: 3px solid var(--surface);
+}
+
+/* Keyboard users get a clear ring; mouse users never see it. The app is dense,
+   so the ring has to read against both the surface and the tinted panel heads. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.btn:focus-visible,
+.field:focus-visible {
+  outline-offset: 1px;
+}
+
+.btn:active {
+  transform: translateY(0.5px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn:disabled:hover {
+  background: var(--surface);
+}
+
+/* Horizontal proportion bar, shared by the composition strip and the per-line
+   share indicators. Width is set inline from the computed share. */
+.bar {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.25s ease;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
